@@ -1,0 +1,592 @@
+<!DOCTYPE html><html lang="en"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OppCenter - Earn Money Writing Reviews</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .header {
+            padding: 1rem;
+            text-align: right;
+        }
+
+        .logo {
+            font-weight: bold;
+            color: #333;
+            text-decoration: none;
+        }
+
+        .main-content {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            gap: 2rem;
+        }
+
+        .content-left {
+            flex: 1;
+            max-width: 600px;
+        }
+
+        .main-heading {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .sub-heading {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .highlight {
+            color: #f90;
+        }
+
+        .tagline {
+            color: #666;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .benefits {
+            list-style: none;
+            margin-bottom: 2rem;
+        }
+
+        .benefits li {
+            margin-bottom: 0.5rem;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .benefits li::before {
+            content: "•";
+            color: #f90;
+            position: absolute;
+            left: 0;
+        }
+
+        .zip-form {
+            display: flex;
+            gap: 1rem;
+            max-width: 400px;
+        }
+
+        .zip-input {
+            flex: 1;
+            padding: 0.75rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
+        .start-button {
+            padding: 0.75rem 1.5rem;
+            background-color: #f90;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .start-button:hover {
+            background-color: #e88a00;
+        }
+
+        .image-right {
+            flex: 1;
+            max-width: 500px;
+            text-align: right;
+        }
+
+        .image-right img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .footer {
+            background-color: #f90; /* Updated footer background color */
+            padding: 2rem;
+            text-align: center;
+            margin-top: auto;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+        }
+
+        .footer-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold; /* Added font-weight for better visibility */
+        }
+
+        /* Quiz and Final Step styles */
+        .quiz-container, .final-step {
+            display: none;
+            min-height: 100vh;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
+            text-align: center;
+        }
+
+        .quiz-content, .final-content {
+            width: 100%;
+            max-width: 600px;
+        }
+
+        .progress-bar {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .progress-step {
+            height: 0.5rem;
+            flex: 1;
+            background-color: #ddd;
+            border-radius: 0.25rem;
+        }
+
+        .progress-step.active {
+            background-color: #f90;
+        }
+
+        .question {
+            font-size: 1.5rem;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .answer-button {
+            display: block;
+            width: 100%;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            background-color: #f90;
+            color: white;
+            border: none;
+            border-radius: 2rem;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .answer-button:hover {
+            background-color: #e88a00;
+        }
+
+        .badge {
+            background-color: #f0f7ff;
+            color: #333;
+            padding: 0.5rem 1rem;
+            border-radius: 1rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin: 1rem 0;
+        }
+
+        .badge::before {
+            content: "✓";
+            color: #0066ff;
+        }
+
+        .offer-text {
+            font-size: 1.25rem;
+            margin: 1rem 0;
+        }
+
+        .expiry-text {
+            color: #0066ff;
+            margin: 1rem 0;
+        }
+
+        .cta-button {
+            background-color: #f90;
+            color: white;
+            border: none;
+            border-radius: 2rem;
+            padding: 1rem 2rem;
+            font-size: 1.125rem;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 2rem;
+        }
+
+        .cta-button:hover {
+            background-color: #e88a00;
+        }
+
+        .how-it-works {
+            padding: 4rem 2rem;
+            text-align: center;
+            background-color: #f90;
+            color: white;
+        }
+
+        .how-it-works h2 {
+            font-size: 2rem;
+            margin-bottom: 3rem;
+            color: white;
+        }
+
+        .steps {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .step {
+            flex: 1;
+            max-width: 300px;
+            background-color: white;
+            padding: 2rem;
+            border-radius: 8px;
+        }
+
+        .step img {
+            width: 100px;
+            height: 100px;
+            margin-bottom: 1rem;
+        }
+
+        .step h3 {
+            margin-bottom: 0.5rem;
+            color: #333;
+        }
+
+        .step p {
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        .faq {
+            padding: 4rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .faq h2 {
+            font-size: 2rem;
+            color: #f90;
+            margin-bottom: 2rem;
+        }
+
+        .faq details {
+            margin-bottom: 1rem;
+            border: 1px solid #eee;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .faq summary {
+            padding: 1rem;
+            cursor: pointer;
+            background: #fff;
+            font-weight: 500;
+            list-style: none;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .faq summary::after {
+            content: "+";
+            font-size: 1.5rem;
+            color: #f90;
+        }
+
+        .faq details[open] summary::after {
+            content: "-";
+        }
+
+        .faq details div {
+            padding: 1rem;
+            background: #f9f9f9;
+        }
+
+        @media (max-width: 768px) {
+            .main-content {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .zip-form {
+                margin: 0 auto;
+            }
+
+            .benefits {
+                text-align: left;
+                max-width: 400px;
+                margin: 0 auto 2rem;
+            }
+
+            .image-right {
+                order: -1;
+            }
+            .steps {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .step {
+                text-align: center;
+            }
+        }
+        .disclaimer { /* Updated disclaimer styles */
+            font-size: 0.75rem;
+            color: rgba(255, 255, 255, 0.9); /* Updated disclaimer text color */
+            max-width: 800px;
+            margin: 1rem auto;
+            text-align: justify;
+        }
+
+        .start-button,
+        .answer-button,
+        .cta-button {
+            transition: all 0.3s ease;
+        }
+
+        .start-button:hover,
+        .answer-button:hover,
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .start-button:active,
+        .answer-button:active,
+        .cta-button:active {
+            transform: translateY(1px);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <a href="/" class="logo">OppCenter</a>
+    </header>
+
+    <main class="main-content">
+        <div class="content-left">
+            <h1 class="main-heading">Earn Money for <u><strong>Amazon</strong></u></h1>
+            <h2 class="sub-heading">Bonus Available for <span class="highlight">Writing Review.</span></h2>
+            <p class="tagline">Shop. Play. Get Rewarded</p>
+            
+            <ul class="benefits">
+                <li>No experience required</li>
+                <li>Complete in your spare time</li>
+                <li>Get Paid out in as little as a week</li>
+            </ul>
+
+            <form id="zip-form" class="zip-form">
+                <input type="text" placeholder="Enter Your Zip Code" class="zip-input" required="">
+                <button type="submit" class="start-button">Start Now</button>
+            </form>
+        </div>
+
+        <div class="image-right">
+            <img src="images/main.jpg" alt="Happy customer with Amazon box">
+        </div>
+    </main>
+
+    <div id="quiz-container" class="quiz-container">
+        <div class="quiz-content">
+            <p class="tagline">Shop, Play, Get Rewarded</p>
+            <div class="progress-bar">
+                <div class="progress-step active"></div>
+                <div class="progress-step"></div>
+                <div class="progress-step"></div>
+            </div>
+            <h2 id="question" class="question"></h2>
+            <button class="answer-button" data-answer="Yes">Yes</button>
+            <button class="answer-button" data-answer="No">No</button>
+        </div>
+    </div>
+
+    <div id="final-step" class="final-step">
+        <div class="final-content">
+            <h1 class="main-heading">Earn Money for <u><strong>Amazon</strong></u></h1>
+            <h2 class="sub-heading">Bonus Available for <span class="highlight">Writing Review.</span></h2>
+            <p class="tagline">Shop, Play, Get Rewarded</p>
+            
+            <div class="badge">Best Fit for You</div>
+            
+            <p class="offer-text">
+                Earn up to <strong>$750</strong> towards Amazon Products + additional <strong>$750</strong> for reviewing the products!
+            </p>
+            
+           
+            
+            <p class="expiry-text" id="expiryDate"></p>
+            
+            <button onclick="window.location.href='https://tmtrcks.com/225148/186'" class="cta-button">
+                YES, get started now
+            </button>
+        </div>
+    </div>
+
+    <section class="how-it-works">
+        <h2>How It Works</h2>
+        <div class="steps">
+            <div class="step">
+                <img src="images/hiw1.svg" alt="Sign Up Icon">
+                <h3>Sign Up</h3>
+                <p>Begin your journey by creating a free account with OppCenter</p>
+            </div>
+            <div class="step">
+                <img src="images/hiw2.svg" alt="Explore Icon">
+                <h3>Explore Opportunities</h3>
+                <p>Browse through a variety of earning opportunities tailored to different skill levels and interests</p>
+            </div>
+            <div class="step">
+                <img src="images/hiw3.svg" alt="Start Earning Icon">
+                <h3>Start Earning</h3>
+                <p>Start participating in various opportunities to maximize your earnings</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="faq">
+        <h2>Frequently Asked Questions</h2>
+        
+        <details>
+            <summary>What is OppCenter?</summary>
+            <div>
+                OppCenter is a platform dedicated to helping individuals find and succeed in income-generating opportunities.
+            </div>
+        </details>
+
+        <details>
+            <summary>Is there a fee to join OppCenter?</summary>
+            <div>
+                No, signing up with OppCenter is completely free. We offer free access to exclusive opportunities.
+            </div>
+        </details>
+
+        <details>
+            <summary>Do I need any prior experience to join?</summary>
+            <div>
+                No prior experience is required. Our programs are designed to cater to both beginners and those with some experience. We provide all instructions to help you succeed regardless of your background.
+            </div>
+        </details>
+
+        <details>
+            <summary>How quickly can I start earning money?</summary>
+            <div>
+                The time it takes to start earning depends on the opportunity you choose.
+            </div>
+        </details>
+
+        <details>
+            <summary>Is there a time limit for doing this?</summary>
+            <div>
+                No, there is no time limit. You can complete tasks at your own pace. The flexibility of the opportunities allows you to choose when you would like to work.
+            </div>
+        </details>
+    </section>
+
+    <footer class="footer">
+        <div class="footer-links">
+            <a href="./privacy.html">Privacy Policy</a>
+            <a href="./terms.html">Terms and Conditions</a>
+          <a href="/cdn-cgi/l/email-protection#85e6eaebf1e4e6f1c5eaf5f5e6e0ebf1e0f7abebe0f1" class="mailto">Contact Us</a>
+        </div>
+        <p class="disclaimer">
+            To access samples, deals, giveaways, coupons, sweepstakes, or any other offers ("Deals") through the links available on UplevelRewards you may be required to share your personal information, respond to survey questions, and agree to be contacted by our marketing partners. UplevelRewards does not guarantee the availability of Deal(s) facilitated through our website or that they will meet your requirements since they are offered as well as monitored by third parties and are provided on the website for convenience purposes only.
+            <br><br>
+            We shall not be liable for the unavailability of any Deals, for any reasons, including but not limited to, third-party terms and conditions associated with such Deals, change in qualification criteria related to such Deals, denial of service, communication lapses, or any other reasons due to which the Deals become unavailable. We may receive compensation, at no cost to you, when you participate in the third-party offers available on our website. All third-party names (including company and service names), graphics, and logos used here are trademarks or registered trademarks of such third parties. Use of them here does not imply any affiliation with or endorsement by such third-parties.
+        </p>
+    </footer>
+
+    <script data-cfasync="false" src="js/email-decode.min.js"></script><script>
+        const questions = [
+            "Have you ever submitted a product review?",
+            "Do you shop online regularly?",
+            "Would you like to earn money reviewing products?"
+        ];
+
+        let currentQuestion = 0;
+        const answers = [];
+
+        const zipForm = document.getElementById('zip-form');
+        const quizContainer = document.getElementById('quiz-container');
+        const finalStep = document.getElementById('final-step');
+        const questionElement = document.getElementById('question');
+        const answerButtons = document.querySelectorAll('.answer-button');
+        const progressSteps = document.querySelectorAll('.progress-step');
+
+        zipForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            document.querySelector('.main-content').style.display = 'none';
+            quizContainer.style.display = 'flex';
+            showQuestion();
+        });
+
+        function showQuestion() {
+            questionElement.textContent = questions[currentQuestion];
+            progressSteps[currentQuestion].classList.add('active');
+        }
+
+        answerButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                answers.push(button.dataset.answer);
+                currentQuestion++;
+
+                if (currentQuestion < questions.length) {
+                    showQuestion();
+                } else {
+                    // Show final step
+                    quizContainer.style.display = 'none';
+                    finalStep.style.display = 'flex';
+                }
+            });
+        });
+    </script>
+    <script>
+    function setExpiryDate() {
+        const now = new Date();
+        const expiryDate = new Date(now.getFullYear(), now.getMonth(), now.getDate(), 23, 59, 59);
+        const options = { 
+            month: 'long', 
+            day: 'numeric', 
+            year: 'numeric',
+            hour: 'numeric',
+            minute: '2-digit',
+            timeZone: 'America/New_York',
+            timeZoneName: 'short'
+        };
+        const formattedDate = expiryDate.toLocaleString('en-US', options);
+        document.getElementById('expiryDate').textContent = formattedDate;
+    }
+
+    // Call the function when the page loads
+    setExpiryDate();
+</script>
+
+
+
+</body></html>
